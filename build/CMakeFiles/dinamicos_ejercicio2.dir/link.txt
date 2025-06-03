@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/dinamicos_ejercicio2.dir/dinamicos/ejercicio2.c.o -o bin/dinamicos_ejercicio2  libeedd.a -lm 

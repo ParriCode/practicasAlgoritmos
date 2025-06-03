@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/vuelta_atras_ejercicio4.dir/vuelta_atras/ejercicio4.c.o -o bin/vuelta_atras_ejercicio4  libeedd.a -lm 

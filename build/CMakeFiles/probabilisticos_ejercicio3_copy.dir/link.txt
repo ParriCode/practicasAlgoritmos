@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/probabilisticos_ejercicio3_copy.dir/probabilisticos/ejercicio3_copy.c.o -o bin/probabilisticos_ejercicio3_copy  libeedd.a -lm 

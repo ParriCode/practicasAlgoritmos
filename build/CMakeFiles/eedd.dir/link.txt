@@ -1,2 +1,0 @@
-/usr/bin/ar qc libeedd.a CMakeFiles/eedd.dir/EEDD/disjoint/disjoint.c.o CMakeFiles/eedd.dir/EEDD/fvector/fvector.c.o CMakeFiles/eedd.dir/EEDD/heap_aristas/heap_aristas.c.o CMakeFiles/eedd.dir/EEDD/imatriz2d/imatriz2d.c.o CMakeFiles/eedd.dir/EEDD/ivector/ivector.c.o CMakeFiles/eedd.dir/EEDD/vdin/vdin.c.o
-/usr/bin/ranlib libeedd.a

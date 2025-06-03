@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/voraces_ejercicio3.dir/voraces/ejercicio3.c.o -o bin/voraces_ejercicio3  libeedd.a -lm 

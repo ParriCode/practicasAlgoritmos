@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/dinamicos_teoria.dir/dinamicos/teoria.c.o -o bin/dinamicos_teoria  libeedd.a -lm 

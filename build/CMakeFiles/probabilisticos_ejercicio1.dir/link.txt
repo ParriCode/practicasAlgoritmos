@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/probabilisticos_ejercicio1.dir/probabilisticos/ejercicio1.c.o -o bin/probabilisticos_ejercicio1  libeedd.a -lm 

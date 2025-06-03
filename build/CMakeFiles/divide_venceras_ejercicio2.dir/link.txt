@@ -1,1 +1,0 @@
-/usr/bin/cc CMakeFiles/divide_venceras_ejercicio2.dir/divide_venceras/ejercicio2.c.o -o bin/divide_venceras_ejercicio2  libeedd.a -lm 
