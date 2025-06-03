@@ -10,8 +10,6 @@
  */
 
 
- #ifndef EJERCICIO6_H_
- #define EJERCICIO6_H_
  #include <stdlib.h>
  #include <stdio.h>
  
@@ -107,5 +105,24 @@
      
  }
  
- 
- #endif
+ int main() {
+     int bombones[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // Bombones disponibles (0 = no comprado)
+     int nbombones = sizeof(bombones) / sizeof(bombones[0]);
+     
+     caja cajas[] = {
+         {1, (int[]){0, 1}, 2},
+         {2, (int[]){2, 3}, 2},
+         {3, (int[]){4, 5}, 2},
+         {4, (int[]){6, 7}, 2},
+         {5, (int[]){8, 9}, 2}
+     };
+     int ncajas = sizeof(cajas) / sizeof(cajas[0]);
+     
+     // Ordenar las cajas por número de bombones
+     qsort(cajas, ncajas, sizeof(caja), comparar_cajas);
+     
+     // Ejecutar el algoritmo voraz
+     voraz(bombones, nbombones, cajas, ncajas);
+     
+     return 0;
+ }

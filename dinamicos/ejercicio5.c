@@ -21,7 +21,7 @@ int botellon(int v[], int n) {
     int cantidad = 0;
     int k = 0;
     mat[1][1] = v[1];
-    mat[1][2] = v[j];
+   // mat[1][2] = v[j];
     // Caso base: subintervalos de longitud 1
 
     // DP bottom-up: longitudes de 2 hasta n

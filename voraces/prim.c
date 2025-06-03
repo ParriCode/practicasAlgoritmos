@@ -9,9 +9,9 @@
  * 
  */
 
-#include "prim.h"
 #include <limits.h>
-
+#include <stdio.h>
+#include "imatriz2d/imatriz2d.h"
 // El motherfucker algoritmo de prim encuentra un arbol generador minimal comunicando las aristas de un grafo conexo
 
 void prim2(imatriz2d m, int n) {
@@ -31,7 +31,7 @@ void prim2(imatriz2d m, int n) {
         k = -1;
         min = INT_MAX;
         for(int j = 0; j < n; ++j){
-            if(mindist[j] != -1; && mindist[j] < min){
+            if(mindist[j] != -1 && mindist[j] < min){
                 min = mindist[j];
                 k = j;
             }
@@ -115,5 +115,21 @@ void prim(imatriz2d m, int N) {
     for (int i = 0; i < N - 1; ++i) {
         printf("%d - %d\n", T[i][0], T[i][1]);
     }
+}
+
+int main() {
+    int n = 5; // Número de nodos
+    imatriz2d m = icreamatriz2d(n, n);
+    
+    // Inicializar la matriz de adyacencia (grafo no dirigido)
+    m[0][1] = 2; m[1][0] = 2;
+    m[0][2] = 3; m[2][0] = 3;
+    m[1][3] = 4; m[3][1] = 4;
+    m[2][4] = 5; m[4][2] = 5;
+    m[3][4] = 1; m[4][3] = 1;
+
+    prim(m, n);
+
+    return 0;
 }
 

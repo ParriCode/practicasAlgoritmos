@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/vuelta_atras_prueba.dir/vuelta_atras/prueba.c.o -o bin/vuelta_atras_prueba  libeedd.a -lm 

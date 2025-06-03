@@ -9,10 +9,9 @@
  * 
  */
 
- #ifndef EJERCICIO5_H_
- #define EJERCICIO5_H_
+
  
- #include "../imatriz2d/imatriz2d.h"
+ #include "imatriz2d/imatriz2d.h"
  #include <limits.h>
  #include <stdio.h>
  
@@ -92,5 +91,23 @@
      return 1;   
  }
  
+ int main() {
+     int n = 5; // Número de nodos
+     imatriz2d m = icreamatriz2d(n, n);
+     
+     // Inicializar la matriz de adyacencia (grafo no dirigido)
+     m[0][1] = 1; m[1][0] = 1;
+     m[0][2] = 1; m[2][0] = 1;
+     m[1][3] = 1; m[3][1] = 1;
+     m[2][4] = 1; m[4][2] = 1;
+     //m[3][4] = 1; m[4][3] = 1; // Descomentar para hacer el grafo conexo
  
- #endif
+     if (grafo_conexo(m, n)) {
+         printf("El grafo es conexo.\n");
+     } else {
+         printf("El grafo no es conexo.\n");
+     }
+ 
+     ifreematriz2d(&m);
+     return 0;
+ }

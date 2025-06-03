@@ -11,7 +11,13 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "ejercicio1.h"
+
+
+typedef struct {
+    int id;        // Identificador del pedido
+    int tiempo;   // Tiempo de entrega
+    int cobrar;   // Cantidad a cobrar por el pedido
+} pedido;
  /**
   * @brief comparar dos pedidos
   * @param a 
@@ -66,3 +72,15 @@ void  peticion_entregas(pedido *pedidos, int n){
 
     printf("Beneficio máximo: %d\n", beneficio);
  }
+ int main(int argc , char * argv[]){
+    pedido pedidos[] = {
+        {1, 5, 100},
+        {2, 3, 200},
+        {3, 4, 150},
+        {4, 2, 300},
+        {5, 1, 250}
+    };
+    int n = sizeof(pedidos) / sizeof(pedidos[0]);
+    peticion_entregas(pedidos, n);
+    return 0;
+}

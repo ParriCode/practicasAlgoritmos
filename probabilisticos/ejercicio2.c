@@ -11,7 +11,7 @@ figura. */
 #include <math.h>
 
 // Función que determina si un punto (x, y) está dentro de un círculo de radio 5
-inline  int dentro_circulo(double x , double y){
+int dentro_circulo(double x , double y){
     const int radio = 5;
     return sqrt(y*y + x*x ) <= radio;
 }

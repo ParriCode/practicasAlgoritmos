@@ -9,7 +9,6 @@
  */
 
 #include <stdio.h>
-#include "ejercicio2.h"
 #include <stdlib.h>
 
 /**
@@ -51,4 +50,12 @@ int suma_maxima(int *A, int *B, int n){
         }
     }
     return s;
+}
+int main() {
+    int A[] = {1, 2, 3, 4, 5};
+    int B[] = {5, 4, 3, 2, 1};
+    int n = sizeof(A) / sizeof(A[0]);
+    int resultado = suma_maxima(A, B, n);
+    printf("La suma máxima es: %d\n", resultado);
+    return 0;
 }
