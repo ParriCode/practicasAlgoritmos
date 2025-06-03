@@ -51,7 +51,7 @@ int camino_mas_ancho(imatriz2d m, int n) {
         }
         printf("\n");
     }
-
+    ifreematriz2d(&p);
    return 0;
 }
    
