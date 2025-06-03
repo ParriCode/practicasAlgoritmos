@@ -1,94 +1,61 @@
+#include <stdio.h>
 
-/**
- * @file merguesort.c
- * @author Jose Luis Parrilla Fuentes (theparri@protonmail.com)
- * @brief Implementación del algoritmo mergesort
- * @version 0.1
- * @date 2025-02-26
- * 
- * @copyright Copyright (c) 2025
- * 
- */
 int n0_mergesort = 64;
 
-#include <stdlib.h>
-/**
- * @brief Ordena un vector de enteros v de tamaño n mediante el algoritmo de inserción
- * @details El algoritmo consiste en recorrer el vector e insertar luego yendo hacia atrás en la posición correcta
- * @param v vector
- * @param n numero de elementos del vector
- * @post v estara ordenado de menor a mayor
- */
+/* ---------- inserción ---------- */
 void insercion(int v[], int n){
-    int j = 0;
-    for(int i = 1; i < n ; ++i){
+    for (int i = 1; i < n; ++i){
         int aux = v[i];
-        int j = i -1;
-        while(v[j] > aux && j >= 0){
-            v[j+1] = v[j];
+        int j = i - 1;
+        while (j >= 0 && v[j] > aux){
+            v[j + 1] = v[j];
             --j;
         }
-        v[j+1] = aux;
+        v[j + 1] = aux;
     }
 }
-/**
- * @brief 
- * @pre Vectores ordenados
- * 
- * @param v puntero vector v
- * @param u puntero vector u
- * @param n Longitud de v
- * @param m Longitud de u
- * @post Vector V ordenado
- */
-void merge(int v[], int u[], int n, int m){
-    int i , j , k ;
-    i = j = k = 0;
-    
-    int *w = (int*)malloc((m+n)*sizeof(int));
 
-    while (j < n && k < m) {
-        if (v[j] < u[k]) {
-            w[i++] = v[j++];
-        } else {
-            w[i++] = u[k++];
-        }
+/* ---------- merge ---------- */
+void merge(int v[], int a, int m, int b){
+    int n1 = m - a + 1;
+    int n2 = b - m;
+
+    int L[n1], R[n2];
+
+    for (int i = 0; i < n1; ++i) L[i] = v[a + i];
+    for (int j = 0; j < n2; ++j) R[j] = v[m + 1 + j];
+
+    int i = 0, j = 0, k = a;
+    while (i < n1 && j < n2){
+        if (L[i] <= R[j]) v[k++] = L[i++];
+        else               v[k++] = R[j++];
     }
-    for(int i = 0;i < n+m; ++i){
-        v[i] = w[i];
-    }
-    free(w);
+    while (i < n1) v[k++] = L[i++];
+    while (j < n2) v[k++] = R[j++];
 }
-/**
- * @brief Ordenacion por metodo merguesort
- * @details n0 == 10
- * @param v 
- * @param a 
- * @param b 
- */
-void mergesort(int v[], int a , int b){
-    if(a >= b) return;
-    if((b-a+1) < n0_mergesort){
-        insercion(v+a,b-a);
+
+/* ---------- mergesort ---------- */
+void mergesort(int v[], int a, int b){
+    if (a >= b) return;
+
+    if ((b - a + 1) < n0_mergesort){
+        insercion(v + a, b - a + 1);
+    } else {
+        int m = a + (b - a) / 2;
+        mergesort(v, a, m);
+        mergesort(v, m + 1, b);
+        merge(v, a, m, b);
     }
-    else{
-        int m = a+(b-a)/2; //Mitad del vector
-        mergesort(v,a,m); //Desde v con m-n 
-        mergesort(v,m+1,b); //u coge desde principio hasta m
-        merge(v+a,v+m,m-a,b-m); //mergue siempre recibe el puntero bien reservado
-        }
 }
-int main() {
+
+/* ---------- main (prueba) ---------- */
+int main(void){
     int v[] = {38, 27, 43, 3, 9, 82, 10};
-    int n = sizeof(v) / sizeof(v[0]);
-    
+    int n = sizeof v / sizeof v[0];
+
     mergesort(v, 0, n - 1);
-    
+
     printf("Vector ordenado: ");
-    for (int i = 0; i < n; i++) {
-        printf("%d ", v[i]);
-    }
-    printf("\n");
-    
-    return 0;
+    for (int i = 0; i < n; ++i) printf("%d ", v[i]);
+    putchar('\n');
 }

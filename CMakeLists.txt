@@ -1,6 +1,3 @@
-# =============================================================
-#  ÚNICO CMakeLists.txt en la raíz (no necesitas más ficheros)
-# =============================================================
 cmake_minimum_required(VERSION 3.16)
 project(practicas_algoritmos C)
 
@@ -17,8 +14,7 @@ endif()
 # Binarios a  build/bin/
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# Necesitamos la librería matemática para funciones como ceil/floor
-# En sistemas Unix → -lm   ; en MSVC no es necesaria
+#INCLUIR CABECERAS NECESARIAS
 if (MSVC)
     set(MATH_LIB "")
 else()
@@ -30,9 +26,7 @@ else()
     endif()
 endif()
 
-# =============================================================
-#  1) Biblioteca con las estructuras de datos  ( carpeta EEDD )
-# =============================================================
+# COMPILAR LAS EEDD
 
 # Reúne recursivamente todos los .c de EEDD, EXCEPTO pruebas
 file(GLOB_RECURSE EEDD_SRC CONFIGURE_DEPENDS
@@ -46,9 +40,7 @@ add_library(eedd STATIC ${EEDD_SRC})
 # Cabeceras
 target_include_directories(eedd PUBLIC ${PROJECT_SOURCE_DIR}/EEDD)
 
-# =============================================================
-# 2) Ejecutables de cada práctica (sin CMakeLists extra)
-# =============================================================
+
 
 set(PRACTICE_DIRS
     dinamicos
@@ -76,7 +68,3 @@ foreach(DIR ${PRACTICE_DIRS})
         target_include_directories(${EXE_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/EEDD)
     endforeach()
 endforeach()
-
-# =============================================================
-#  Fin del CMakeLists.txt
-# =============================================================
