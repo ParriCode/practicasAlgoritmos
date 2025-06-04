@@ -16,47 +16,47 @@
  * @param sol  Vector solucion
  * @return Número de soluciones
  */
-int longfija(int *a, int n , int m, int k ,int c, int *sol){
-    if(  k == m ){
+void longfija(int *A, int n , int m, int k ,int c, int *sol, int s){
+    if(  s == m ){
         if(c == 0 ){ 
             for(int i = 0; i < m ; ++i){
                 printf("%d, ", sol[i]);
             }
             printf("\n");
         }
-        return 0;
+        return;
     }
-    for(int i = n-1; i>=0 ;--i){
- 
-        if( a[i] <= c){
-            sol[k] = a[i];
-            longfija(a,i ,m,k+1 , c -  a[i],sol);   
-        }
+    if( k == n || c < 0){ //final del conjunto o suma superada
+        return; 
+    }else{
+        sol[s] = A[k]; //Cogemos el número actual
+        longfija(A, n, m, k + 1, c - A[k], sol, s + 1); //coger el actual
+        longfija(A, n, m, k + 1, c, sol, s); //no coger el actual
+
     }
-    return 0;
+    return ;
     
 }
 
-void longvariable(int *a, int n , int k , int c, int h ,int *sol ){
-    if( k == n || c == 0){
-        if( c == 0 ){
-            for(int i = 0; i< h ; ++i){
-                printf("%d, ",sol[i]);
-            }
-            printf("\n");
+void longvariable(int *a, int n , int k , int c ,int *sol, int s){
+    if(c == 0){
+
+        for(int i = 0; i< s ; ++i){
+            printf("%d, ",sol[i]);
         }
+        printf("\n");
+     
         return;
 
+    }else if(c < 0 || k == n || s == n){ //Si la suma es negativa o hemos llegado al final del conjunto
+        return;
+
+    }else{
+        sol[s] = a[k]; //Cogemos el número actual
+        longvariable(a, n, k + 1, c - a[k], sol, s + 1); //coger el actual
+        longvariable(a, n, k + 1, c, sol, s); //no coger el actual
     }
-    for(int i = k; i< n; ++i){
-     
-       
-        if( c - a[i]  >= 0 ){
-            sol[h] = a[i];
-            longvariable(a,n, i+1,c - a[i] , h+1,sol);
-        }
-       
-    }
+    
 }
 
 #define num 9
@@ -66,7 +66,7 @@ int main(int argc , char *argv[]){
     int a[num] = {3,4,6,7,1,10,8,9 , 2};
     int c = 10;
     int sol[mm];
-    longfija(a, num,  mm ,0,  c, sol); 
+    longfija(a, num,  mm ,0,  c, sol,0); 
 
     int sol2[num];
     //inicilizar sol a 0
@@ -74,7 +74,7 @@ int main(int argc , char *argv[]){
         sol2[i] = 0;
     }
     printf("LONTIGUD VARIABLE\n");
-    longvariable(a,num, 0, c , 0,sol2);
+    longvariable(a,num, 0, c ,sol2 ,0);
 
 
 

@@ -13,33 +13,38 @@
  * @param n Numero de dados
  * @param m puntuacion que hay que sacar
  * @param sol Numero de combinaciones posibles
- * @return 
+ * @param k Posición actual en la solución
  */
-int combinaciones(int n, int m , int sol,int *comb){
-    if(n == -1 && m == 0){
-        for(int i = 0; i < 5; ++i){
-            printf("%d, ",comb[i]);
+void combinaciones(int n , int m , int sol[] , int k){
+    if(k == n){
+        if(m == 0){
+            // Si hemos usado todos los dados y la puntuación es 0, hemos encontrado una combinación válida
+            printf("Combinación encontrada: ");
+            for(int i = 0; i < n; ++i){
+                printf("%d ", sol[i]);
+            }
+            printf("\n");
         }
-        printf("\n");
-        return sol+1;
-    }
-    for(int i = 1 ;  i <= 6; ++i){
-        if(!(i + n*6 < m || i + n > m)  ){ //Quitar soluciones que no se van a dar
-            comb[n] = i;
-            sol = combinaciones(n -1 , m-i, sol ,comb);
-            //printf("%d, ",i);
+        else{
+            return;
         }
     }
-    return sol;
+    else if(m > (n-k)*6 || m < (n-k)){
+        return ; //poda de combinaciones imposibles
+    }
+    else{
+        for(int i = 1; i <= 6; ++i){ //Probar cada cara del dado
+            sol[k] = i; //Asignar la cara del dado
+            combinaciones(n, m - i, sol, k + 1); //Llamada recursiva para el siguiente dado
+        }
+    }
 }
 
 int main(int argc , char * argv[]){
-    printf("HOLA MUNDO");
     int n = 5; 
     int m = 10;
-    int sol = 0;
-    int comb[n];
-    int s = combinaciones(n-1, m ,sol,comb);
-    printf("\nResultado: %d\n",s);
+    int sol[5];
+    combinaciones(n, m, sol, 0);
     return 0;
+
 }

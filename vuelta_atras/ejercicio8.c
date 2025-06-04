@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "imatriz2d/imatriz2d.h"
+
 #include <stdlib.h>
 #include <limits.h>
-
+#include "imatriz2d/imatriz2d.h"
 
 void recorrido(imatriz2d tablero, int n , int k, int x, int y, int * encontrado){
    // fflush(stdout);
